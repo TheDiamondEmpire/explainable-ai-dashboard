@@ -1,0 +1,354 @@
+{
+  "model_details": {
+    "name": "adult / lgbm",
+    "title": "LightGBM gradient boosting (black box)",
+    "kind": "lgbm",
+    "interpretable": false,
+    "version": "0.1.0",
+    "library_versions": {
+      "scikit-learn": "1.9.1",
+      "lightgbm": "4.7.0"
+    },
+    "hyperparameters": {
+      "n_estimators": 200,
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "min_child_samples": 20,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "random_state": 611
+    },
+    "training_seed": 611,
+    "probability_calibration": {
+      "method": "Platt scaling on the calibration split",
+      "slope": 1.041,
+      "intercept": 0.0434
+    }
+  },
+  "intended_use": {
+    "primary": "Demonstration and evaluation of explanation, fairness and uncertainty tooling on a public benchmark.",
+    "out_of_scope": "Any real decision about people. These models are not validated for deployment."
+  },
+  "training_data": {
+    "name": "adult",
+    "title": "Adult / Census Income (1994)",
+    "source": "OpenML dataset 'adult' (data id 1590), originally UCI Machine Learning Repository, fetched with scikit-learn fetch_openml",
+    "version": "OpenML version 2; raw table sha256 d273d956c28eba72",
+    "licence": "Public (UCI repository, CC BY 4.0 for the Adult dataset)",
+    "synthetic": false,
+    "description": "1994 US census extract. Task: predict income above 50K. Nine of the fourteen columns are used, with categorical columns reduced to binary indicators.",
+    "target": "income",
+    "positive_meaning": "income above 50K per year (favourable outcome)",
+    "sensitive_attribute": "sex (Female/Male, as recorded in 1994)",
+    "sensitive_use": "audit only; never a model input",
+    "limitations": [
+      "Collected in 1994; reflects historical labour-market inequality, so subgroup gaps are largely a property of the data, not only of the model.",
+      "Sex is recorded as a binary attribute; no other identities are represented.",
+      "Proxies for sex (for example marital status and hours per week) remain in the features.",
+      "Not a decision-ready dataset: a benchmark for demonstration only."
+    ],
+    "n_rows": 48842,
+    "n_features": 9,
+    "sha256": "d457680936d68aac08cf40dc2bca4ba28c1a8d1f1ff3afbcd0e3baa9b64f0d8e",
+    "raw_sha256": "d273d956c28eba72241f69dcbb78e37e93862248503a1873fb44b9fc2a6ae00b",
+    "openml_id": 1590
+  },
+  "splits": {
+    "train": 26863,
+    "calibration": 7326,
+    "conformal": 7326,
+    "test": 7327,
+    "method": "stratified on the label; one fixed seed"
+  },
+  "performance": {
+    "n": 7327.0,
+    "accuracy": 0.8691,
+    "auc": 0.9239,
+    "log_loss": 0.2827,
+    "brier": 0.0906,
+    "ece": 0.0107,
+    "ece_raw": 0.0087,
+    "positive_rate": 0.187,
+    "base_rate": 0.2393
+  },
+  "fairness": {
+    "sensitive_attribute": "sex (Female/Male, as recorded in 1994)",
+    "threshold": 0.5,
+    "n": 7327,
+    "by_group": [
+      {
+        "group": "Female",
+        "n": 2427,
+        "base_rate": 0.1059,
+        "selection_rate": 0.0667,
+        "tpr": 0.5136,
+        "fpr": 0.0138,
+        "accuracy": 0.9361,
+        "mean_predicted": 0.1073,
+        "ece": 0.0074,
+        "brier": 0.0488
+      },
+      {
+        "group": "Male",
+        "n": 4900,
+        "base_rate": 0.3053,
+        "selection_rate": 0.2465,
+        "tpr": 0.635,
+        "fpr": 0.0758,
+        "accuracy": 0.8359,
+        "mean_predicted": 0.3015,
+        "ece": 0.0158,
+        "brier": 0.1114
+      }
+    ],
+    "gaps": {
+      "dp_diff": 0.1798,
+      "eo_diff": 0.1214,
+      "tpr_gap": 0.1214,
+      "fpr_gap": 0.062,
+      "ece_gap": 0.0084
+    },
+    "gap_95ci": {
+      "dp_diff": [
+        0.1642,
+        0.1928
+      ],
+      "eo_diff": [
+        0.065,
+        0.1747
+      ],
+      "tpr_gap": [
+        0.0569,
+        0.1747
+      ],
+      "fpr_gap": [
+        0.0536,
+        0.071
+      ],
+      "ece_gap": [
+        0.0002,
+        0.0158
+      ]
+    },
+    "flagged_at_0.05": {
+      "dp_diff": true,
+      "eo_diff": true,
+      "tpr_gap": true,
+      "fpr_gap": true,
+      "ece_gap": false
+    }
+  },
+  "uncertainty": {
+    "alpha": 0.1,
+    "target_coverage": 0.9,
+    "classwise": false,
+    "n_calibration": 7326,
+    "n_test": 7327,
+    "coverage": 0.9003685000682408,
+    "mean_set_size": 1.0730176061143715,
+    "share_both_labels": 0.0730176061143715,
+    "share_empty": 0.0,
+    "coverage_by_class": {
+      "0": 0.9648367420165052,
+      "1": 0.6953793496862521
+    },
+    "coverage_by_group": {
+      "Female": 0.9468479604449939,
+      "Male": 0.8773469387755102
+    }
+  },
+  "explanations": {
+    "local_methods": [
+      "SHAP (interventional)",
+      "LIME (tabular)",
+      "local permutation"
+    ],
+    "global_methods": [
+      "permutation importance",
+      "partial dependence / ICE"
+    ],
+    "target": "raw model log-odds of the positive class",
+    "quality": {
+      "e1": [
+        {
+          "baseline": "mean",
+          "method": "shap",
+          "n": 200,
+          "deletion_gain_mean": 0.1192,
+          "deletion_gain_ci_low": 0.105,
+          "deletion_gain_ci_high": 0.1337,
+          "insertion_gain_mean": 0.0794,
+          "combined_gain_mean": 0.0993
+        },
+        {
+          "baseline": "mean",
+          "method": "lime",
+          "n": 200,
+          "deletion_gain_mean": 0.0086,
+          "deletion_gain_ci_low": -0.0061,
+          "deletion_gain_ci_high": 0.0242,
+          "insertion_gain_mean": 0.0176,
+          "combined_gain_mean": 0.0131
+        },
+        {
+          "baseline": "mean",
+          "method": "lpi",
+          "n": 200,
+          "deletion_gain_mean": 0.078,
+          "deletion_gain_ci_low": 0.0634,
+          "deletion_gain_ci_high": 0.0928,
+          "insertion_gain_mean": 0.0716,
+          "combined_gain_mean": 0.0748
+        },
+        {
+          "baseline": "mean",
+          "method": "global_pi",
+          "n": 200,
+          "deletion_gain_mean": 0.0136,
+          "deletion_gain_ci_low": 0.0026,
+          "deletion_gain_ci_high": 0.0241,
+          "insertion_gain_mean": 0.0451,
+          "combined_gain_mean": 0.0293
+        },
+        {
+          "baseline": "marginal",
+          "method": "shap",
+          "n": 200,
+          "deletion_gain_mean": 0.1592,
+          "deletion_gain_ci_low": 0.1504,
+          "deletion_gain_ci_high": 0.1686,
+          "insertion_gain_mean": 0.1258,
+          "combined_gain_mean": 0.1425
+        },
+        {
+          "baseline": "marginal",
+          "method": "lime",
+          "n": 200,
+          "deletion_gain_mean": 0.1256,
+          "deletion_gain_ci_low": 0.1158,
+          "deletion_gain_ci_high": 0.1354,
+          "insertion_gain_mean": 0.0997,
+          "combined_gain_mean": 0.1126
+        },
+        {
+          "baseline": "marginal",
+          "method": "lpi",
+          "n": 200,
+          "deletion_gain_mean": 0.1421,
+          "deletion_gain_ci_low": 0.1331,
+          "deletion_gain_ci_high": 0.1517,
+          "insertion_gain_mean": 0.1195,
+          "combined_gain_mean": 0.1308
+        },
+        {
+          "baseline": "marginal",
+          "method": "global_pi",
+          "n": 200,
+          "deletion_gain_mean": 0.0616,
+          "deletion_gain_ci_low": 0.0523,
+          "deletion_gain_ci_high": 0.0701,
+          "insertion_gain_mean": 0.059,
+          "combined_gain_mean": 0.0603
+        }
+      ],
+      "e2": [
+        {
+          "setting": "refit",
+          "method": "shap",
+          "n": 50,
+          "spearman_mean": 0.9154,
+          "spearman_ci_low": 0.9055,
+          "spearman_ci_high": 0.9244,
+          "topk_jaccard_mean": 0.8066
+        },
+        {
+          "setting": "refit",
+          "method": "lime",
+          "n": 50,
+          "spearman_mean": 0.9518,
+          "spearman_ci_low": 0.944,
+          "spearman_ci_high": 0.9583,
+          "topk_jaccard_mean": 0.9256
+        },
+        {
+          "setting": "refit",
+          "method": "lpi",
+          "n": 50,
+          "spearman_mean": 0.826,
+          "spearman_ci_low": 0.8063,
+          "spearman_ci_high": 0.8446,
+          "topk_jaccard_mean": 0.7271
+        },
+        {
+          "setting": "explainer_only",
+          "method": "shap",
+          "n": 50,
+          "spearman_mean": 0.9429,
+          "spearman_ci_low": 0.936,
+          "spearman_ci_high": 0.9491,
+          "topk_jaccard_mean": 0.8274
+        },
+        {
+          "setting": "explainer_only",
+          "method": "lime",
+          "n": 50,
+          "spearman_mean": 0.9675,
+          "spearman_ci_low": 0.9635,
+          "spearman_ci_high": 0.9708,
+          "topk_jaccard_mean": 0.9661
+        },
+        {
+          "setting": "explainer_only",
+          "method": "lpi",
+          "n": 50,
+          "spearman_mean": 0.8716,
+          "spearman_ci_low": 0.8558,
+          "spearman_ci_high": 0.8853,
+          "topk_jaccard_mean": 0.7647
+        }
+      ],
+      "e3": [
+        {
+          "pair": "shap-lime",
+          "n": 100,
+          "mean_abs_feature_correlation": 0.108,
+          "overlap_mean": 0.83,
+          "overlap_ci_low": 0.808,
+          "overlap_ci_high": 0.85,
+          "chance_overlap": 0.5556
+        },
+        {
+          "pair": "shap-lpi",
+          "n": 100,
+          "mean_abs_feature_correlation": 0.108,
+          "overlap_mean": 0.86,
+          "overlap_ci_low": 0.836,
+          "overlap_ci_high": 0.882,
+          "chance_overlap": 0.5556
+        },
+        {
+          "pair": "lime-lpi",
+          "n": 100,
+          "mean_abs_feature_correlation": 0.108,
+          "overlap_mean": 0.786,
+          "overlap_ci_low": 0.76,
+          "overlap_ci_high": 0.814,
+          "chance_overlap": 0.5556
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Collected in 1994; reflects historical labour-market inequality, so subgroup gaps are largely a property of the data, not only of the model.",
+    "Sex is recorded as a binary attribute; no other identities are represented.",
+    "Proxies for sex (for example marital status and hours per week) remain in the features.",
+    "Not a decision-ready dataset: a benchmark for demonstration only.",
+    "Metrics are from a single train/test split; no confidence intervals are given for accuracy.",
+    "Conformal guarantees are marginal and assume exchangeable data; they say nothing about drift."
+  ],
+  "ethical_considerations": [
+    "Subgroup gaps measured here describe this dataset and this model, not causes.",
+    "The sensitive attribute is used for auditing only and is not a model input; proxies may remain.",
+    "Passing an audit does not make a model fair; failing one is a prompt to investigate."
+  ]
+}

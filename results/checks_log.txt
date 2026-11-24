@@ -1,0 +1,14 @@
+[     0.5s] start checks; cpu load at start 90%
+[     2.9s] S1 synthetic-lending/logreg done
+[    18.4s] S1 synthetic-lending/lgbm done
+[    23.2s] S1 adult/logreg done
+[    62.1s] S1 adult/lgbm done
+[    63.3s] S1 breast-cancer/logreg done
+[    70.8s] S1 breast-cancer/lgbm done
+[    78.6s] S2 synthetic-lending/logreg done
+[    84.7s] S2 synthetic-lending/lgbm done
+[    87.1s] S2 adult/logreg done
+[    89.5s] S2 adult/lgbm done
+[   115.3s] S2 breast-cancer/logreg done
+[   151.2s] S2 breast-cancer/lgbm done
+[   153.3s] finished checks in 153.3s (failed=False)

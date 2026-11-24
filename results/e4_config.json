@@ -1,0 +1,47 @@
+{
+  "config": {
+    "repeats_a": 10,
+    "boot_a": 200,
+    "reps_b": 30,
+    "boot_b": 200,
+    "n_b": 12000,
+    "pop_b": 200000
+  },
+  "datasets_a": [
+    "adult",
+    "synthetic-lending"
+  ],
+  "planted_ground_truth": {
+    "strength_0": {
+      "population_n": 200000,
+      "label_rate_group_A": 0.4436377883795432,
+      "label_rate_group_B": 0.44183981785115917,
+      "label_rate_gap": 0.0017979705283840408
+    },
+    "strength_1": {
+      "population_n": 200000,
+      "label_rate_group_A": 0.44683587192558255,
+      "label_rate_group_B": 0.30110639025920327,
+      "label_rate_gap": 0.14572948166637928
+    }
+  },
+  "hardware": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 1 Stepping 1, AuthenticAMD",
+    "logical_cores": 8,
+    "physical_cores": 4,
+    "thread_cap_used_by_this_project": 2,
+    "memory_total_gb": 28.0,
+    "memory_available_gb_at_start": 3.4,
+    "cpu_load_percent_at_start_mean_of_4_samples": 87.4,
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit_learn": "1.9.1",
+    "lightgbm": "4.7.0",
+    "shap": "0.54.1",
+    "xaidash": "0.1.0",
+    "master_seed": 20240611
+  },
+  "smoke": false
+}

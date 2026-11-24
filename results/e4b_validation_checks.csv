@@ -1,0 +1,16 @@
+criterion,gap,strength,predictor,value,met,mean_diff
+V1 oracle CI coverage >= 0.90,dp_diff,0,oracle,0.866667,False,
+V1 oracle CI coverage >= 0.90,dp_diff,1,oracle,0.966667,True,
+V1 oracle CI coverage >= 0.90,eo_diff,0,oracle,0,False,
+V1 oracle CI coverage >= 0.90,eo_diff,1,oracle,1,True,
+V2 oracle DP gap flagged in >= 90% at strength 1,dp_diff,1,oracle,1,True,
+V2b |mean DP estimate - population value| <= 0.02 at strength 1,dp_diff,1,logreg,0.0012816,True,
+V3 DP gap flagged in <= 10% at strength 0,dp_diff,0,logreg,0,True,
+"V4 ECE gap larger at strength 1 than 0 (paired Wilcoxon, one-sided p)",ece_gap,1,logreg,1.95205e-05,True,0.0211425
+V2b |mean DP estimate - population value| <= 0.02 at strength 1,dp_diff,1,lgbm,0.00404381,True,
+V3 DP gap flagged in <= 10% at strength 0,dp_diff,0,lgbm,0,True,
+"V4 ECE gap larger at strength 1 than 0 (paired Wilcoxon, one-sided p)",ece_gap,1,lgbm,8.41916e-07,True,0.0192187
+V2b |mean DP estimate - population value| <= 0.02 at strength 1,dp_diff,1,mlp,0.00278483,True,
+V3 DP gap flagged in <= 10% at strength 0,dp_diff,0,mlp,0,True,
+"V4 ECE gap larger at strength 1 than 0 (paired Wilcoxon, one-sided p)",ece_gap,1,mlp,1.95205e-05,True,0.0188368
+V3 DP gap flagged in <= 10% at strength 0,dp_diff,0,oracle,0,True,

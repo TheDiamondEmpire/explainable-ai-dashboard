@@ -1,0 +1,187 @@
+{
+  "model_details": {
+    "name": "adult / mlp",
+    "title": "Small neural network, 32-16 hidden units (black box)",
+    "kind": "mlp",
+    "interpretable": false,
+    "version": "0.1.0",
+    "library_versions": {
+      "scikit-learn": "1.9.1",
+      "lightgbm": "4.7.0"
+    },
+    "hyperparameters": {
+      "max_iter": 500,
+      "learning_rate": "constant",
+      "hidden_layer_sizes": [
+        32,
+        16
+      ],
+      "alpha": 0.001,
+      "random_state": 611
+    },
+    "training_seed": 611,
+    "probability_calibration": {
+      "method": "Platt scaling on the calibration split",
+      "slope": 0.867,
+      "intercept": -0.0274
+    }
+  },
+  "intended_use": {
+    "primary": "Demonstration and evaluation of explanation, fairness and uncertainty tooling on a public benchmark.",
+    "out_of_scope": "Any real decision about people. These models are not validated for deployment."
+  },
+  "training_data": {
+    "name": "adult",
+    "title": "Adult / Census Income (1994)",
+    "source": "OpenML dataset 'adult' (data id 1590), originally UCI Machine Learning Repository, fetched with scikit-learn fetch_openml",
+    "version": "OpenML version 2; raw table sha256 d273d956c28eba72",
+    "licence": "Public (UCI repository, CC BY 4.0 for the Adult dataset)",
+    "synthetic": false,
+    "description": "1994 US census extract. Task: predict income above 50K. Nine of the fourteen columns are used, with categorical columns reduced to binary indicators.",
+    "target": "income",
+    "positive_meaning": "income above 50K per year (favourable outcome)",
+    "sensitive_attribute": "sex (Female/Male, as recorded in 1994)",
+    "sensitive_use": "audit only; never a model input",
+    "limitations": [
+      "Collected in 1994; reflects historical labour-market inequality, so subgroup gaps are largely a property of the data, not only of the model.",
+      "Sex is recorded as a binary attribute; no other identities are represented.",
+      "Proxies for sex (for example marital status and hours per week) remain in the features.",
+      "Not a decision-ready dataset: a benchmark for demonstration only."
+    ],
+    "n_rows": 48842,
+    "n_features": 9,
+    "sha256": "d457680936d68aac08cf40dc2bca4ba28c1a8d1f1ff3afbcd0e3baa9b64f0d8e",
+    "raw_sha256": "d273d956c28eba72241f69dcbb78e37e93862248503a1873fb44b9fc2a6ae00b",
+    "openml_id": 1590
+  },
+  "splits": {
+    "train": 26863,
+    "calibration": 7326,
+    "conformal": 7326,
+    "test": 7327,
+    "method": "stratified on the label; one fixed seed"
+  },
+  "performance": {
+    "n": 7327.0,
+    "accuracy": 0.8575,
+    "auc": 0.9108,
+    "log_loss": 0.3072,
+    "brier": 0.0986,
+    "ece": 0.0093,
+    "ece_raw": 0.015,
+    "positive_rate": 0.1827,
+    "base_rate": 0.2393
+  },
+  "fairness": {
+    "sensitive_attribute": "sex (Female/Male, as recorded in 1994)",
+    "threshold": 0.5,
+    "n": 7327,
+    "by_group": [
+      {
+        "group": "Female",
+        "n": 2427,
+        "base_rate": 0.1059,
+        "selection_rate": 0.061,
+        "tpr": 0.4591,
+        "fpr": 0.0138,
+        "accuracy": 0.9304,
+        "mean_predicted": 0.1118,
+        "ece": 0.0095,
+        "brier": 0.0535
+      },
+      {
+        "group": "Male",
+        "n": 4900,
+        "base_rate": 0.3053,
+        "selection_rate": 0.2431,
+        "tpr": 0.6056,
+        "fpr": 0.0837,
+        "accuracy": 0.8214,
+        "mean_predicted": 0.3009,
+        "ece": 0.0122,
+        "brier": 0.121
+      }
+    ],
+    "gaps": {
+      "dp_diff": 0.1821,
+      "eo_diff": 0.1465,
+      "tpr_gap": 0.1465,
+      "fpr_gap": 0.0699,
+      "ece_gap": 0.0027
+    },
+    "gap_95ci": {
+      "dp_diff": [
+        0.1667,
+        0.1972
+      ],
+      "eo_diff": [
+        0.0898,
+        0.2115
+      ],
+      "tpr_gap": [
+        0.0898,
+        0.2115
+      ],
+      "fpr_gap": [
+        0.0606,
+        0.0799
+      ],
+      "ece_gap": [
+        0.0001,
+        0.0145
+      ]
+    },
+    "flagged_at_0.05": {
+      "dp_diff": true,
+      "eo_diff": true,
+      "tpr_gap": true,
+      "fpr_gap": true,
+      "ece_gap": false
+    }
+  },
+  "uncertainty": {
+    "alpha": 0.1,
+    "target_coverage": 0.9,
+    "classwise": false,
+    "n_calibration": 7326,
+    "n_test": 7327,
+    "coverage": 0.8987307219871707,
+    "mean_set_size": 1.0985396478777125,
+    "share_both_labels": 0.09853964787771256,
+    "share_empty": 0.0,
+    "coverage_by_class": {
+      "0": 0.9671689989235738,
+      "1": 0.6811180832857958
+    },
+    "coverage_by_group": {
+      "Female": 0.9439637412443346,
+      "Male": 0.8763265306122449
+    }
+  },
+  "explanations": {
+    "local_methods": [
+      "SHAP (interventional)",
+      "LIME (tabular)",
+      "local permutation"
+    ],
+    "global_methods": [
+      "permutation importance",
+      "partial dependence / ICE"
+    ],
+    "target": "raw model log-odds of the positive class",
+    "quality": null
+  },
+  "limitations": [
+    "Collected in 1994; reflects historical labour-market inequality, so subgroup gaps are largely a property of the data, not only of the model.",
+    "Sex is recorded as a binary attribute; no other identities are represented.",
+    "Proxies for sex (for example marital status and hours per week) remain in the features.",
+    "Not a decision-ready dataset: a benchmark for demonstration only.",
+    "Metrics are from a single train/test split; no confidence intervals are given for accuracy.",
+    "Conformal guarantees are marginal and assume exchangeable data; they say nothing about drift."
+  ],
+  "ethical_considerations": [
+    "Subgroup gaps measured here describe this dataset and this model, not causes.",
+    "The sensitive attribute is used for auditing only and is not a model input; proxies may remain.",
+    "Passing an audit does not make a model fair; failing one is a prompt to investigate."
+  ]
+}

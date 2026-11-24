@@ -1,0 +1,25 @@
+dataset,model,setting,comparison,n,mean_diff,effect_dominance,p_one_sided,confirmatory_H1,p_holm_confirmatory
+synthetic-lending,logreg,refit,shap - lime (Spearman stability),50,0.0154351,0.28,0.00149813,False,
+synthetic-lending,logreg,refit,shap - lpi (Spearman stability),50,0.03689,0.96,1.77636e-15,False,
+synthetic-lending,logreg,explainer_only,shap - lime (Spearman stability),50,0.0141757,0.32,0.00116098,False,
+synthetic-lending,logreg,explainer_only,shap - lpi (Spearman stability),50,0.0525205,0.98,5.55048e-10,False,
+synthetic-lending,lgbm,refit,shap - lime (Spearman stability),50,-0.0216141,-0.28,0.993534,True,1
+synthetic-lending,lgbm,refit,shap - lpi (Spearman stability),50,0.0949015,1,8.88178e-16,False,
+synthetic-lending,lgbm,explainer_only,shap - lime (Spearman stability),50,0.0145238,0.4,0.000665179,False,
+synthetic-lending,lgbm,explainer_only,shap - lpi (Spearman stability),50,0.0530263,0.84,3.97016e-13,False,
+adult,logreg,refit,shap - lime (Spearman stability),50,-0.0188805,-0.56,0.999998,False,
+adult,logreg,refit,shap - lpi (Spearman stability),50,0.051208,0.96,1.24345e-14,False,
+adult,logreg,explainer_only,shap - lime (Spearman stability),50,-0.0298973,-0.72,1,False,
+adult,logreg,explainer_only,shap - lpi (Spearman stability),50,0.0417433,0.96,8.27403e-10,False,
+adult,lgbm,refit,shap - lime (Spearman stability),50,-0.0364398,-0.88,1,True,1
+adult,lgbm,refit,shap - lpi (Spearman stability),50,0.0893567,1,8.88178e-16,False,
+adult,lgbm,explainer_only,shap - lime (Spearman stability),50,-0.0246406,-0.72,1,False,
+adult,lgbm,explainer_only,shap - lpi (Spearman stability),50,0.0712242,1,8.88178e-16,False,
+breast-cancer,logreg,refit,shap - lime (Spearman stability),50,0.168892,1,8.88178e-16,False,
+breast-cancer,logreg,refit,shap - lpi (Spearman stability),50,0.0419478,0.96,2.66454e-15,False,
+breast-cancer,logreg,explainer_only,shap - lime (Spearman stability),50,0.143264,1,8.88178e-16,False,
+breast-cancer,logreg,explainer_only,shap - lpi (Spearman stability),50,0.0376215,1,8.88178e-16,False,
+breast-cancer,lgbm,refit,shap - lime (Spearman stability),50,0.217317,1,8.88178e-16,True,2.66454e-15
+breast-cancer,lgbm,refit,shap - lpi (Spearman stability),50,0.0557303,1,8.88178e-16,False,
+breast-cancer,lgbm,explainer_only,shap - lime (Spearman stability),50,0.264046,1,8.88178e-16,False,
+breast-cancer,lgbm,explainer_only,shap - lpi (Spearman stability),50,0.0182507,1,8.88178e-16,False,

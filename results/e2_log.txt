@@ -1,0 +1,26 @@
+[     0.5s] start e2; cpu load at start 100%
+[    13.7s] synthetic-lending/logreg: refit 10/30
+[    25.7s] synthetic-lending/logreg: refit 20/30
+[    39.7s] synthetic-lending/logreg: refit 30/30
+[    81.5s] synthetic-lending/logreg: done
+[   119.2s] synthetic-lending/lgbm: refit 10/30
+[   153.8s] synthetic-lending/lgbm: refit 20/30
+[   189.9s] synthetic-lending/lgbm: refit 30/30
+[   262.4s] synthetic-lending/lgbm: done
+[   279.8s] adult/logreg: refit 10/30
+[   297.6s] adult/logreg: refit 20/30
+[   318.3s] adult/logreg: refit 30/30
+[   369.1s] adult/logreg: done
+[   475.2s] adult/lgbm: refit 10/30
+[   577.0s] adult/lgbm: refit 20/30
+[   646.3s] adult/lgbm: refit 30/30
+[   744.9s] adult/lgbm: done
+[   775.4s] breast-cancer/logreg: refit 10/30
+[   804.8s] breast-cancer/logreg: refit 20/30
+[   842.6s] breast-cancer/logreg: refit 30/30
+[   943.4s] breast-cancer/logreg: done
+[  1005.9s] breast-cancer/lgbm: refit 10/30
+[  1071.5s] breast-cancer/lgbm: refit 20/30
+[  1130.8s] breast-cancer/lgbm: refit 30/30
+[  1284.2s] breast-cancer/lgbm: done
+[  1288.5s] finished e2 in 1288.5s (failed=False)

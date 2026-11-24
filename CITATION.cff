@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Explainable AI Prediction Dashboard"
+type: software
+version: 0.1.0
+abstract: "Predictions people can interrogate: explanations, fairness, uncertainty and what-if analysis."
+authors:
+  - name: "The Diamond Empire"
+    website: "https://thedempire.shop/"
+repository-code: "https://github.com/TheDiamondEmpire/explainable-ai-dashboard"
+keywords:
+  - "explainable-ai"
+  - "xai"
+  - "shap"
+  - "fairness"
+  - "machine-learning"
+  - "dashboard"
+  - "python"

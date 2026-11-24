@@ -1,0 +1,7 @@
+dataset,model,n,validity_rate,mean_sparsity,mean_cost_mad_units,total_constraint_violations,mean_seconds_informational
+synthetic-lending,logreg,50,1,1.02,3.4962,0,0.11854
+synthetic-lending,lgbm,50,1,1.28,3.00511,0,0.110716
+adult,logreg,50,1,1,6.80084,0,0.0380755
+adult,lgbm,50,1,1.1,1.4156,0,0.030805
+breast-cancer,logreg,50,1,1.74,14.6484,0,0.506491
+breast-cancer,lgbm,50,1,2.34,4.92726,0,0.70637

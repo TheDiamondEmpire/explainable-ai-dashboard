@@ -1,0 +1,11 @@
+[     0.5s] start model_cards; cpu load at start 89%
+[    18.7s] card synthetic-lending__logreg
+[    20.2s] card synthetic-lending__lgbm
+[    21.5s] card synthetic-lending__mlp
+[    61.1s] card adult__logreg
+[    66.1s] card adult__lgbm
+[    71.0s] card adult__mlp
+[    72.0s] card breast-cancer__logreg
+[    72.1s] card breast-cancer__lgbm
+[    72.2s] card breast-cancer__mlp
+[    72.2s] finished model_cards in 72.2s (failed=False)

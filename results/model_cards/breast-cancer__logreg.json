@@ -1,0 +1,276 @@
+{
+  "model_details": {
+    "name": "breast-cancer / logreg",
+    "title": "Logistic regression (interpretable)",
+    "kind": "logreg",
+    "interpretable": true,
+    "version": "0.1.0",
+    "library_versions": {
+      "scikit-learn": "1.9.1",
+      "lightgbm": "4.7.0"
+    },
+    "hyperparameters": {
+      "C": 1.0,
+      "max_iter": 2000,
+      "random_state": null
+    },
+    "training_seed": 611,
+    "probability_calibration": {
+      "method": "Platt scaling on the calibration split",
+      "slope": 1.3715,
+      "intercept": 0.8822
+    }
+  },
+  "intended_use": {
+    "primary": "Demonstration and evaluation of explanation, fairness and uncertainty tooling on a public benchmark.",
+    "out_of_scope": "Any real decision about people. These models are not validated for deployment."
+  },
+  "training_data": {
+    "name": "breast-cancer",
+    "title": "Wisconsin Diagnostic Breast Cancer",
+    "source": "scikit-learn bundled copy of the UCI WDBC dataset (sklearn.datasets.load_breast_cancer)",
+    "version": "scikit-learn bundled copy; see sha256",
+    "licence": "CC BY 4.0 (UCI Machine Learning Repository)",
+    "synthetic": false,
+    "description": "569 fine-needle-aspirate records, 30 highly correlated numeric features.",
+    "target": "diagnosis",
+    "positive_meaning": "malignant",
+    "sensitive_attribute": null,
+    "sensitive_use": "not applicable: no sensitive attribute is recorded",
+    "limitations": [
+      "569 rows only; test sets are small and intervals are wide.",
+      "Features are strongly collinear, which stresses attribution methods.",
+      "A teaching benchmark, not a clinical tool."
+    ],
+    "n_rows": 569,
+    "n_features": 30,
+    "sha256": "e1549ecb09c8c0131fcb80d74eefab065f285269d4892e1c551909ad8150c6e3"
+  },
+  "splits": {
+    "train": 312,
+    "calibration": 85,
+    "conformal": 86,
+    "test": 86,
+    "method": "stratified on the label; one fixed seed"
+  },
+  "performance": {
+    "n": 86.0,
+    "accuracy": 0.9767,
+    "auc": 1.0,
+    "log_loss": 0.0457,
+    "brier": 0.0128,
+    "ece": 0.0344,
+    "ece_raw": 0.0404,
+    "positive_rate": 0.3953,
+    "base_rate": 0.3721
+  },
+  "fairness": null,
+  "uncertainty": {
+    "alpha": 0.1,
+    "target_coverage": 0.9,
+    "classwise": false,
+    "n_calibration": 86,
+    "n_test": 86,
+    "coverage": 0.9534883720930233,
+    "mean_set_size": 0.9534883720930233,
+    "share_both_labels": 0.0,
+    "share_empty": 0.046511627906976744,
+    "coverage_by_class": {
+      "0": 0.9259259259259259,
+      "1": 1.0
+    }
+  },
+  "explanations": {
+    "local_methods": [
+      "SHAP (interventional)",
+      "LIME (tabular)",
+      "local permutation"
+    ],
+    "global_methods": [
+      "permutation importance",
+      "partial dependence / ICE"
+    ],
+    "target": "raw model log-odds of the positive class",
+    "quality": {
+      "e1": [
+        {
+          "baseline": "mean",
+          "method": "shap",
+          "n": 200,
+          "deletion_gain_mean": 0.4435,
+          "deletion_gain_ci_low": 0.4289,
+          "deletion_gain_ci_high": 0.4583,
+          "insertion_gain_mean": 0.121,
+          "combined_gain_mean": 0.2823
+        },
+        {
+          "baseline": "mean",
+          "method": "lime",
+          "n": 200,
+          "deletion_gain_mean": 0.3889,
+          "deletion_gain_ci_low": 0.3721,
+          "deletion_gain_ci_high": 0.4054,
+          "insertion_gain_mean": 0.1147,
+          "combined_gain_mean": 0.2518
+        },
+        {
+          "baseline": "mean",
+          "method": "lpi",
+          "n": 200,
+          "deletion_gain_mean": 0.439,
+          "deletion_gain_ci_low": 0.4242,
+          "deletion_gain_ci_high": 0.454,
+          "insertion_gain_mean": 0.1206,
+          "combined_gain_mean": 0.2798
+        },
+        {
+          "baseline": "mean",
+          "method": "global_pi",
+          "n": 200,
+          "deletion_gain_mean": 0.0372,
+          "deletion_gain_ci_low": 0.0228,
+          "deletion_gain_ci_high": 0.0529,
+          "insertion_gain_mean": 0.0261,
+          "combined_gain_mean": 0.0316
+        },
+        {
+          "baseline": "marginal",
+          "method": "shap",
+          "n": 200,
+          "deletion_gain_mean": 0.2469,
+          "deletion_gain_ci_low": 0.2373,
+          "deletion_gain_ci_high": 0.2573,
+          "insertion_gain_mean": 0.1526,
+          "combined_gain_mean": 0.1997
+        },
+        {
+          "baseline": "marginal",
+          "method": "lime",
+          "n": 200,
+          "deletion_gain_mean": 0.2209,
+          "deletion_gain_ci_low": 0.211,
+          "deletion_gain_ci_high": 0.2316,
+          "insertion_gain_mean": 0.1408,
+          "combined_gain_mean": 0.1808
+        },
+        {
+          "baseline": "marginal",
+          "method": "lpi",
+          "n": 200,
+          "deletion_gain_mean": 0.2388,
+          "deletion_gain_ci_low": 0.2291,
+          "deletion_gain_ci_high": 0.2497,
+          "insertion_gain_mean": 0.1528,
+          "combined_gain_mean": 0.1958
+        },
+        {
+          "baseline": "marginal",
+          "method": "global_pi",
+          "n": 200,
+          "deletion_gain_mean": 0.0598,
+          "deletion_gain_ci_low": 0.0511,
+          "deletion_gain_ci_high": 0.0689,
+          "insertion_gain_mean": 0.0501,
+          "combined_gain_mean": 0.0549
+        }
+      ],
+      "e2": [
+        {
+          "setting": "refit",
+          "method": "shap",
+          "n": 50,
+          "spearman_mean": 0.8782,
+          "spearman_ci_low": 0.8677,
+          "spearman_ci_high": 0.8881,
+          "topk_jaccard_mean": 0.5483
+        },
+        {
+          "setting": "refit",
+          "method": "lime",
+          "n": 50,
+          "spearman_mean": 0.7093,
+          "spearman_ci_low": 0.6733,
+          "spearman_ci_high": 0.7434,
+          "topk_jaccard_mean": 0.409
+        },
+        {
+          "setting": "refit",
+          "method": "lpi",
+          "n": 50,
+          "spearman_mean": 0.8362,
+          "spearman_ci_low": 0.8171,
+          "spearman_ci_high": 0.854,
+          "topk_jaccard_mean": 0.503
+        },
+        {
+          "setting": "explainer_only",
+          "method": "shap",
+          "n": 50,
+          "spearman_mean": 0.9805,
+          "spearman_ci_low": 0.9756,
+          "spearman_ci_high": 0.9849,
+          "topk_jaccard_mean": 0.8407
+        },
+        {
+          "setting": "explainer_only",
+          "method": "lime",
+          "n": 50,
+          "spearman_mean": 0.8372,
+          "spearman_ci_low": 0.8046,
+          "spearman_ci_high": 0.8673,
+          "topk_jaccard_mean": 0.5771
+        },
+        {
+          "setting": "explainer_only",
+          "method": "lpi",
+          "n": 50,
+          "spearman_mean": 0.9428,
+          "spearman_ci_low": 0.9294,
+          "spearman_ci_high": 0.9548,
+          "topk_jaccard_mean": 0.7321
+        }
+      ],
+      "e3": [
+        {
+          "pair": "shap-lime",
+          "n": 100,
+          "mean_abs_feature_correlation": 0.3955,
+          "overlap_mean": 0.65,
+          "overlap_ci_low": 0.612,
+          "overlap_ci_high": 0.686,
+          "chance_overlap": 0.1667
+        },
+        {
+          "pair": "shap-lpi",
+          "n": 100,
+          "mean_abs_feature_correlation": 0.3955,
+          "overlap_mean": 0.806,
+          "overlap_ci_low": 0.77,
+          "overlap_ci_high": 0.84,
+          "chance_overlap": 0.1667
+        },
+        {
+          "pair": "lime-lpi",
+          "n": 100,
+          "mean_abs_feature_correlation": 0.3955,
+          "overlap_mean": 0.582,
+          "overlap_ci_low": 0.54,
+          "overlap_ci_high": 0.624,
+          "chance_overlap": 0.1667
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "569 rows only; test sets are small and intervals are wide.",
+    "Features are strongly collinear, which stresses attribution methods.",
+    "A teaching benchmark, not a clinical tool.",
+    "Metrics are from a single train/test split; no confidence intervals are given for accuracy.",
+    "Conformal guarantees are marginal and assume exchangeable data; they say nothing about drift."
+  ],
+  "ethical_considerations": [
+    "Subgroup gaps measured here describe this dataset and this model, not causes.",
+    "The sensitive attribute is used for auditing only and is not a model input; proxies may remain.",
+    "Passing an audit does not make a model fair; failing one is a prompt to investigate."
+  ]
+}

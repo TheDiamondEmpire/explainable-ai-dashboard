@@ -1,0 +1,113 @@
+{
+  "model_details": {
+    "name": "breast-cancer / mlp",
+    "title": "Small neural network, 32-16 hidden units (black box)",
+    "kind": "mlp",
+    "interpretable": false,
+    "version": "0.1.0",
+    "library_versions": {
+      "scikit-learn": "1.9.1",
+      "lightgbm": "4.7.0"
+    },
+    "hyperparameters": {
+      "max_iter": 500,
+      "learning_rate": "constant",
+      "hidden_layer_sizes": [
+        32,
+        16
+      ],
+      "alpha": 0.001,
+      "random_state": 611
+    },
+    "training_seed": 611,
+    "probability_calibration": {
+      "method": "Platt scaling on the calibration split",
+      "slope": 0.8936,
+      "intercept": 0.7326
+    }
+  },
+  "intended_use": {
+    "primary": "Demonstration and evaluation of explanation, fairness and uncertainty tooling on a public benchmark.",
+    "out_of_scope": "Any real decision about people. These models are not validated for deployment."
+  },
+  "training_data": {
+    "name": "breast-cancer",
+    "title": "Wisconsin Diagnostic Breast Cancer",
+    "source": "scikit-learn bundled copy of the UCI WDBC dataset (sklearn.datasets.load_breast_cancer)",
+    "version": "scikit-learn bundled copy; see sha256",
+    "licence": "CC BY 4.0 (UCI Machine Learning Repository)",
+    "synthetic": false,
+    "description": "569 fine-needle-aspirate records, 30 highly correlated numeric features.",
+    "target": "diagnosis",
+    "positive_meaning": "malignant",
+    "sensitive_attribute": null,
+    "sensitive_use": "not applicable: no sensitive attribute is recorded",
+    "limitations": [
+      "569 rows only; test sets are small and intervals are wide.",
+      "Features are strongly collinear, which stresses attribution methods.",
+      "A teaching benchmark, not a clinical tool."
+    ],
+    "n_rows": 569,
+    "n_features": 30,
+    "sha256": "e1549ecb09c8c0131fcb80d74eefab065f285269d4892e1c551909ad8150c6e3"
+  },
+  "splits": {
+    "train": 312,
+    "calibration": 85,
+    "conformal": 86,
+    "test": 86,
+    "method": "stratified on the label; one fixed seed"
+  },
+  "performance": {
+    "n": 86.0,
+    "accuracy": 1.0,
+    "auc": 1.0,
+    "log_loss": 0.0283,
+    "brier": 0.0059,
+    "ece": 0.0245,
+    "ece_raw": 0.018,
+    "positive_rate": 0.3721,
+    "base_rate": 0.3721
+  },
+  "fairness": null,
+  "uncertainty": {
+    "alpha": 0.1,
+    "target_coverage": 0.9,
+    "classwise": false,
+    "n_calibration": 86,
+    "n_test": 86,
+    "coverage": 0.8953488372093024,
+    "mean_set_size": 0.8953488372093024,
+    "share_both_labels": 0.0,
+    "share_empty": 0.10465116279069768,
+    "coverage_by_class": {
+      "0": 0.8703703703703703,
+      "1": 0.9375
+    }
+  },
+  "explanations": {
+    "local_methods": [
+      "SHAP (interventional)",
+      "LIME (tabular)",
+      "local permutation"
+    ],
+    "global_methods": [
+      "permutation importance",
+      "partial dependence / ICE"
+    ],
+    "target": "raw model log-odds of the positive class",
+    "quality": null
+  },
+  "limitations": [
+    "569 rows only; test sets are small and intervals are wide.",
+    "Features are strongly collinear, which stresses attribution methods.",
+    "A teaching benchmark, not a clinical tool.",
+    "Metrics are from a single train/test split; no confidence intervals are given for accuracy.",
+    "Conformal guarantees are marginal and assume exchangeable data; they say nothing about drift."
+  ],
+  "ethical_considerations": [
+    "Subgroup gaps measured here describe this dataset and this model, not causes.",
+    "The sensitive attribute is used for auditing only and is not a model input; proxies may remain.",
+    "Passing an audit does not make a model fair; failing one is a prompt to investigate."
+  ]
+}

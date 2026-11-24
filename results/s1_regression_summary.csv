@@ -1,0 +1,2 @@
+dataset,n,coverage_mean,coverage_ci_low,coverage_ci_high,interval_width_mean,interval_width_ci_low,interval_width_ci_high
+diabetes (scikit-learn bundled),100,0.908018,0.900991,0.915315,196.916,194.891,198.941

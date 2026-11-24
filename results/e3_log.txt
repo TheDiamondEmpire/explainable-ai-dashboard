@@ -1,0 +1,16 @@
+[     0.5s] start e3; cpu load at start 100%
+[     4.8s] synthetic-corr-0/logreg: mean|corr|=0.02, SHAP-LIME overlap=0.86
+[    19.8s] synthetic-corr-0/lgbm: mean|corr|=0.02, SHAP-LIME overlap=0.79
+[    24.8s] synthetic-corr-0.3/logreg: mean|corr|=0.31, SHAP-LIME overlap=0.87
+[    45.1s] synthetic-corr-0.3/lgbm: mean|corr|=0.30, SHAP-LIME overlap=0.83
+[    49.9s] synthetic-corr-0.6/logreg: mean|corr|=0.59, SHAP-LIME overlap=0.85
+[    76.3s] synthetic-corr-0.6/lgbm: mean|corr|=0.60, SHAP-LIME overlap=0.84
+[    80.1s] synthetic-corr-0.9/logreg: mean|corr|=0.90, SHAP-LIME overlap=0.86
+[    90.6s] synthetic-corr-0.9/lgbm: mean|corr|=0.90, SHAP-LIME overlap=0.75
+[    94.0s] synthetic-lending/logreg: mean|corr|=0.07, SHAP-LIME overlap=0.90
+[   102.4s] synthetic-lending/lgbm: mean|corr|=0.07, SHAP-LIME overlap=0.85
+[   106.5s] adult/logreg: mean|corr|=0.11, SHAP-LIME overlap=0.71
+[   131.8s] adult/lgbm: mean|corr|=0.11, SHAP-LIME overlap=0.83
+[   140.5s] breast-cancer/logreg: mean|corr|=0.40, SHAP-LIME overlap=0.65
+[   161.9s] breast-cancer/lgbm: mean|corr|=0.39, SHAP-LIME overlap=0.79
+[   166.8s] finished e3 in 166.8s (failed=False)

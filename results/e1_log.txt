@@ -1,0 +1,9 @@
+[     0.5s] start e1; cpu load at start 100%
+[     2.7s] synthetic-lending/logreg: 200 instances, 7 features
+[    16.4s] synthetic-lending/lgbm: 200 instances, 7 features
+[    49.3s] adult/logreg: 200 instances, 9 features
+[    69.2s] adult/lgbm: 200 instances, 9 features
+[   112.7s] breast-cancer/logreg: 200 instances, 30 features
+[   136.4s] breast-cancer/lgbm: 200 instances, 30 features
+[   234.8s] wrote 9600 raw rows
+[   234.8s] finished e1 in 234.8s (failed=False)
